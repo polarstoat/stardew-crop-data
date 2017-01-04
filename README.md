@@ -1,0 +1,37 @@
+# :seedling: Stardew Valley crop data
+
+> Parses *Stardew Valley* data files and extracts the crop data as JSON for use in web apps
+
+## Usage
+
+1. Open the Stardew Valley game folder
+   * macOS: `~/Library/Application Support/Steam/steamapps/common/Stardew Valley/Contents`
+   * Linux: `~/.steam/steam/steamapps/common/Stardew Valley/Content`
+   * Windows: `C:\Programs Files\Steam\SteamApps\common\Stardew Valley\Content`
+1. Use [XNBNode](https://github.com/draivin/XNBNode) to extract `Data/Crops.xnb` and `Data/ObjectInformation.xnb` to `Crops.yaml` and `ObjectInformation.yaml`
+1. Use [yamljs](https://www.npmjs.com/package/yamljs) CLI to convert `Crops.yaml` and `ObjectInformation.yaml` to `Crops.json` and `ObjectInformation.json`
+1. Copy `Crops.json` and `ObjectInformation.json` into this folder
+1. Install dependencies
+
+   ```sh
+   npm install
+   ```
+
+1. Parse the data
+
+   ```sh
+   npm start
+   ```
+
+   The parsed data is saved to `parsed-crops.json`
+
+## Notes
+
+#### Human-friendly categories
+
+* Basic -17: *(category not shown in interface)*
+* Basic -75: Vegetable
+* Basic -79: Fruit
+* Basic -80: Flower
+* Basic -81: Forage
+* Seeds -74: Seed

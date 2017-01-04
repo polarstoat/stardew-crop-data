@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --no-ignore **/*.js; true",
+    "start": "node parse.js",
     "test": "npm run lint"
   },
   "author": "Polar stoat",
@@ -21,5 +22,8 @@
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0"
+  },
+  "dependencies": {
+    "jsonfile": "^2.4.0"
   }
 }

@@ -27,6 +27,10 @@
 
 ## Notes
 
+#### Energy restored
+
+The amount of energy restored by consumable crops (which do not have a `healthRestored` value of `-300`) is 2.5x the amount of health restored.
+
 #### Human-friendly categories
 
 * Basic -17: *(category not shown in interface)*

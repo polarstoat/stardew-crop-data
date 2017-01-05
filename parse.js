@@ -1,13 +1,33 @@
 #!/usr/bin/env node
 
+// Core modules
+const fs = require('fs');
+
 // Custom modules
 const jsonfile = require('jsonfile');
+const YAML = require('yamljs');
 
 const PARSED_CROPS_PATH = 'parsed-crops.json';
 
-// Stardew Valley data files, converted from XNB to YAML and then from YAML to JSON
-const crops = jsonfile.readFileSync('Crops.json');
-const objectInformation = jsonfile.readFileSync('ObjectInformation.json');
+// Stardew Valley data files containers
+let crops = {};
+let objectInformation = {};
+
+// If files exist in JSON
+if (fs.existsSync('Crops.json') && fs.existsSync('ObjectInformation.json')) {
+  crops = jsonfile.readFileSync('Crops.json');
+  objectInformation = jsonfile.readFileSync('ObjectInformation.json');
+
+// If files exist in YAML
+} else if (fs.existsSync('Crops.yaml') && fs.existsSync('ObjectInformation.yaml')) {
+  crops = YAML.load('Crops.yaml');
+  objectInformation = YAML.load('ObjectInformation.yaml');
+
+// If files don't exist
+} else {
+  console.error(new Error('Stardew Valley data files not found'));
+  process.exit(1);
+}
 
 const parsedCrops = {};
 

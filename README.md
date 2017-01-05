@@ -9,8 +9,7 @@
    * Linux: `~/.steam/steam/steamapps/common/Stardew Valley/Content`
    * Windows: `C:\Programs Files\Steam\SteamApps\common\Stardew Valley\Content`
 1. Use [XNBNode](https://github.com/draivin/XNBNode) to extract `Data/Crops.xnb` and `Data/ObjectInformation.xnb` to `Crops.yaml` and `ObjectInformation.yaml`
-1. Use [yamljs](https://www.npmjs.com/package/yamljs) CLI to convert `Crops.yaml` and `ObjectInformation.yaml` to `Crops.json` and `ObjectInformation.json`
-1. Copy `Crops.json` and `ObjectInformation.json` into this folder
+1. Copy `Crops.yaml` and `ObjectInformation.yaml` into this folder
 1. Install dependencies
 
    ```sh

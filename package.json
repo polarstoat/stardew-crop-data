@@ -24,6 +24,7 @@
     "eslint-plugin-import": "^2.2.0"
   },
   "dependencies": {
-    "jsonfile": "^2.4.0"
+    "jsonfile": "^2.4.0",
+    "yamljs": "^0.2.8"
   }
 }

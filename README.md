@@ -2,6 +2,8 @@
 
 > Parses *Stardew Valley* data files and extracts the crop data as JSON for use in web apps
 
+![Stardew Valley](https://img.shields.io/badge/stardew_valley-v1.11-blue.svg)
+
 ## Usage
 
 1. Open the Stardew Valley game folder

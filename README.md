@@ -47,7 +47,7 @@ The data for Parsnip is given as an example of the structure created.
       1,
       1
     ],
-    "regrowTime": -1,
+    "regrowthTime": -1,
     "sellPrice": 35,
     "healthRestored": 10,
     "scythe": false,

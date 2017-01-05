@@ -88,7 +88,7 @@ Object.keys(crops.content).forEach((key) => {
    * will be -1
    * @type {number}
    */
-  crop.regrowTime = Number(cropData[4]);
+  crop.regrowthTime = Number(cropData[4]);
 
   /**
    * Crop's sell value

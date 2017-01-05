@@ -30,9 +30,9 @@ Object.keys(crops.content).forEach((key) => {
   const cropInfoData = objectInformation.content[cropData[3]].split('/');
   const seedInfoData = objectInformation.content[key].split('/');
 
-  const cropYieldData = cropData[6].split(' ').map(Number);
+  const cropHarvestData = cropData[6].split(' ').map(Number);
   // Remove the 'true' in 'true 3 5 5 .02'
-  cropYieldData.shift();
+  cropHarvestData.shift();
 
   const cropFlowerColorData = cropData[8].split(' ').map(Number);
   // Remove the 'true' in
@@ -117,32 +117,32 @@ Object.keys(crops.content).forEach((key) => {
    */
   crop.trellis = (cropData[7] === 'true');
 
-  crop.yield = {};
+  crop.harvest = {};
 
-  if (cropYieldData.length === 4) {
+  if (cropHarvestData.length === 4) {
     /**
      * Minimum yield from each harvest
      * @type {number}
      */
-    crop.yield.minimum = cropYieldData[0];
+    crop.harvest.minimum = cropHarvestData[0];
 
     /**
      * Maximum yield from each harvest
      * @type {number}
      */
-    crop.yield.maximum = cropYieldData[1];
+    crop.harvest.maximum = cropHarvestData[1];
 
     /**
      * Field purpose unknown. Named after https://github.com/exnil/crop_planner/blob/e707442e434415a83f01e0dca81d7ce0263ff1f1/scripts/planner.js#L967
      * @type {number}
      */
-    crop.yield.levelIncrease = cropYieldData[2];
+    crop.harvest.levelIncrease = cropHarvestData[2];
 
     /**
      * Field purpose unknown. Something to do with chance to get more than the minimum yield perhaps. Named after https://github.com/exnil/crop_planner/blob/e707442e434415a83f01e0dca81d7ce0263ff1f1/scripts/planner.js#L968
      * @type {number}
      */
-    crop.yield.extraChance = cropYieldData[3];
+    crop.harvest.extraChance = cropHarvestData[3];
   }
 
   crop.seed = {};

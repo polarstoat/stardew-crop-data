@@ -51,7 +51,7 @@ The data for Parsnip is given as an example of the structure created.
     "healthRestored": 10,
     "scythe": false,
     "trellis": false,
-    "yield": {},
+    "harvest": {},
     "seed": {
       "name": "Parsnip Seeds",
       "description": "Plant these in the spring. Takes 4 days to mature.",

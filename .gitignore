@@ -2,8 +2,6 @@
 node_modules
 
 # Stardew Valley data files
-Crops.json
-ObjectInformation.json
 Crops.yaml
 ObjectInformation.yaml
 

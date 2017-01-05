@@ -8,26 +8,20 @@ const jsonfile = require('jsonfile');
 const YAML = require('yamljs');
 
 const PARSED_CROPS_PATH = 'crops.json';
+const CROPS_PATH = 'Crops.yaml';
+const OBJECT_INFORMATION_PATH = 'ObjectInformation.yaml';
 
-// Stardew Valley data files containers
-let crops = {};
-let objectInformation = {};
+// Check Stardew Valley data files exist
+[CROPS_PATH, OBJECT_INFORMATION_PATH].forEach((path) => {
+  if (!fs.existsSync(path)) {
+    console.error(new Error(`${path} does not exist`));
+    process.exit(1);
+  }
+});
 
-// If files exist in JSON
-if (fs.existsSync('Crops.json') && fs.existsSync('ObjectInformation.json')) {
-  crops = jsonfile.readFileSync('Crops.json');
-  objectInformation = jsonfile.readFileSync('ObjectInformation.json');
-
-// If files exist in YAML
-} else if (fs.existsSync('Crops.yaml') && fs.existsSync('ObjectInformation.yaml')) {
-  crops = YAML.load('Crops.yaml');
-  objectInformation = YAML.load('ObjectInformation.yaml');
-
-// If files don't exist
-} else {
-  console.error(new Error('Stardew Valley data files not found'));
-  process.exit(1);
-}
+// Stardew Valley data files
+const crops = YAML.load(CROPS_PATH);
+const objectInformation = YAML.load(OBJECT_INFORMATION_PATH);
 
 const parsedCrops = {};
 

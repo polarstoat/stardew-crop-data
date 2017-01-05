@@ -7,7 +7,7 @@ const fs = require('fs');
 const jsonfile = require('jsonfile');
 const YAML = require('yamljs');
 
-const PARSED_CROPS_PATH = 'parsed-crops.json';
+const PARSED_CROPS_PATH = 'crops.json';
 
 // Stardew Valley data files containers
 let crops = {};

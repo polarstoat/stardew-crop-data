@@ -22,7 +22,7 @@
    npm start
    ```
 
-   The parsed data is saved to `parsed-crops.json`
+   The parsed data is saved to `crops.json`
 
 ## Notes
 

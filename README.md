@@ -71,19 +71,19 @@ The data for Parsnip is given as an example of the structure created.
 
 The amount of energy restored by consumable crops (which do not have a `healthRestored` value of `-300`) is 2.5x the amount of health restored.
 
-#### Human-friendly categories
+#### Category names
 
-* Basic -17: *(Sweet Gem Berry is the only crop with this internal category, no category shown in game interface)*
+* Basic -17: *(no name displayed in game interface [Sweet Gem Berry is the only crop with this category])*
 * Basic -75: Vegetable
 * Basic -79: Fruit
 * Basic -80: Flower
 * Basic -81: Forage
 * Seeds -74: Seed
 
-Internal categories could be converted to in-game ones with something like the following code snippet:
+Category names could be added with something like the following code snippet:
 
 ```js
-const IN_GAME_CATEGORIES = {
+const CATEGORY_NAMES = {
   'Basic -17': '',
   'Basic -75': 'Vegetable',
   'Basic -79': 'Fruit',
@@ -92,5 +92,5 @@ const IN_GAME_CATEGORIES = {
   'Seeds -74': 'Seed',
 };
 
-inGameCategory = IN_GAME_CATEGORIES[category];
+categoryName = CATEGORY_NAMES[category];
 ```

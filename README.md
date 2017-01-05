@@ -36,19 +36,19 @@ The data for Parsnip is given as an example of the structure created.
     "description": "A spring tuber closely related to the carrot. It has an earthy taste and is full of nutrients.",
     "id": 24,
     "category": "Basic -75",
-    "cropsTilesheetIndex": 0,
-    "seasons": [
+    "rowInSpriteSheet": 0,
+    "seasonsToGrowIn": [
       "spring"
     ],
-    "growthStages": [
+    "phaseDays": [
       1,
       1,
       1,
       1
     ],
-    "regrowthTime": -1,
+    "regrowAfterHarvest": -1,
     "sellPrice": 35,
-    "healthRestored": 10,
+    "edibility": 10,
     "scythe": false,
     "trellis": false,
     "harvest": {},
@@ -58,7 +58,7 @@ The data for Parsnip is given as an example of the structure created.
       "id": 472,
       "category": "Seeds -74",
       "sellPrice": 10,
-      "healthRestored": -300
+      "edibility": -300
     },
     "flowerColors": []
   }

@@ -67,28 +67,32 @@ Object.keys(crops.content).forEach((key) => {
 
   /**
    * Crop's index in crops.png tilesheet
+   * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.cropsTilesheetIndex = Number(cropData[2]);
+  crop.rowInSpriteSheet = Number(cropData[2]);
 
   /**
    * Seasons crop can grow in
+   * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {string[]}
    */
-  crop.seasons = cropData[1].split(' ');
+  crop.seasonsToGrowIn = cropData[1].split(' ');
 
   /**
    * Each item represents days spent in each stage of growth
+   * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number[]}
    */
-  crop.growthStages = cropData[0].split(' ').map(Number);
+  crop.phaseDays = cropData[0].split(' ').map(Number);
 
   /**
    * Days taken after first harvest for crop to produce again. If crop doesn't produce again this
    * will be -1
+   * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.regrowthTime = Number(cropData[4]);
+  crop.regrowAfterHarvest = Number(cropData[4]);
 
   /**
    * Crop's sell value
@@ -101,9 +105,10 @@ Object.keys(crops.content).forEach((key) => {
    * Amount of energy restored on consumption is this * 2.5
    * Negative values cause energy loss but not health loss
    * For non-consumable crops this value will be -300
+   * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.healthRestored = Number(cropInfoData[2]);
+  crop.edibility = Number(cropInfoData[2]);
 
   /**
    * Is the crop harvested with the scythe
@@ -133,16 +138,16 @@ Object.keys(crops.content).forEach((key) => {
     crop.harvest.maximum = cropHarvestData[1];
 
     /**
-     * Field purpose unknown. Named after https://github.com/exnil/crop_planner/blob/e707442e434415a83f01e0dca81d7ce0263ff1f1/scripts/planner.js#L967
+     * Field purpose not entirely known. Named after decompiled Crop.cs from Stardew Valley.exe
      * @type {number}
      */
-    crop.harvest.levelIncrease = cropHarvestData[2];
+    crop.harvest.maximumIncreasePerFarmingLevel = cropHarvestData[2];
 
     /**
-     * Field purpose unknown. Something to do with chance to get more than the minimum yield perhaps. Named after https://github.com/exnil/crop_planner/blob/e707442e434415a83f01e0dca81d7ce0263ff1f1/scripts/planner.js#L968
+     * Field purpose not entirely known. Named after decompiled Crop.cs from Stardew Valley.exe
      * @type {number}
      */
-    crop.harvest.extraChance = cropHarvestData[3];
+    crop.harvest.chanceForExtraCrops = cropHarvestData[3];
   }
 
   crop.seed = {};
@@ -180,9 +185,10 @@ Object.keys(crops.content).forEach((key) => {
   /**
    * Would be the amount of health restored on consumption
    * However no seeds are consumable so will always be -300
+   * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.seed.healthRestored = Number(seedInfoData[2]);
+  crop.seed.edibility = Number(seedInfoData[2]);
 
   /**
    * Crop's flower colors

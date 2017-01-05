@@ -38,3 +38,18 @@ The amount of energy restored by consumable crops (which do not have a `healthRe
 * Basic -80: Flower
 * Basic -81: Forage
 * Seeds -74: Seed
+
+Internal categories could be converted to in-game ones with something like the following code snippet:
+
+```js
+const IN_GAME_CATEGORIES = {
+  'Basic -17': '',
+  'Basic -75': 'Vegetable',
+  'Basic -79': 'Fruit',
+  'Basic -80': 'Flower',
+  'Basic -81': 'Forage',
+  'Seeds -74': 'Seed',
+};
+
+inGameCategory = IN_GAME_CATEGORIES[category];
+```

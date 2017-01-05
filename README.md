@@ -24,6 +24,46 @@
 
    The parsed data is saved to `crops.json`
 
+## Example data
+
+The data for Parsnip is given as an example of the structure created.
+
+```json
+{
+  "24": {
+    "name": "Parsnip",
+    "description": "A spring tuber closely related to the carrot. It has an earthy taste and is full of nutrients.",
+    "id": 24,
+    "category": "Basic -75",
+    "cropsTilesheetIndex": 0,
+    "seasons": [
+      "spring"
+    ],
+    "growthStages": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "regrowTime": -1,
+    "sellPrice": 35,
+    "healthRestored": 10,
+    "scythe": false,
+    "trellis": false,
+    "yield": {},
+    "seed": {
+      "name": "Parsnip Seeds",
+      "description": "Plant these in the spring. Takes 4 days to mature.",
+      "id": 472,
+      "category": "Seeds -74",
+      "sellPrice": 10,
+      "healthRestored": -300
+    },
+    "flowerColors": []
+  }
+}
+```
+
 ## Notes
 
 #### Energy restored

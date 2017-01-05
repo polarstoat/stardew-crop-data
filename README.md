@@ -32,7 +32,7 @@ The amount of energy restored by consumable crops (which do not have a `healthRe
 
 #### Human-friendly categories
 
-* Basic -17: *(category not shown in interface)*
+* Basic -17: *(Sweet Gem Berry is the only crop with this internal category, no category shown in game interface)*
 * Basic -75: Vegetable
 * Basic -79: Fruit
 * Basic -80: Flower

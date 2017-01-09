@@ -204,8 +204,10 @@ Object.keys(crops.content).forEach((key) => {
     482, 483, 484, 485, 487, 488, 489, 490, 491, 492, 493].indexOf(crop.seed.id) > -1) {
     crop.seed.vendor.generalStore = {
       price: crop.seed.sellPrice * 2,
+      yearAvailable: 1,
     };
     if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 100;
+    if ([476, 485, 489].indexOf(crop.seed.id) > -1) crop.seed.vendor.generalStore.yearAvailable = 2;
   }
 
   // Seeds sold at JojaMart

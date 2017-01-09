@@ -51,6 +51,7 @@ The data for Parsnip is given as an example of the structure created.
     "edibility": 10,
     "scythe": false,
     "trellis": false,
+    "canBeGiant": false,
     "harvest": {},
     "seed": {
       "name": "Parsnip Seeds",
@@ -58,7 +59,20 @@ The data for Parsnip is given as an example of the structure created.
       "id": 472,
       "category": "Seeds -74",
       "sellPrice": 10,
-      "edibility": -300
+      "edibility": -300,
+      "vendor": {
+        "generalStore": {
+          "price": 20,
+          "yearAvailable": 1
+        },
+        "jojaMart": {
+          "price": 25
+        },
+        "travelingCart": {
+          "minPrice": 100,
+          "maxPrice": 1000
+        }
+      }
     },
     "flowerColors": []
   }

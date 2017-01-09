@@ -191,6 +191,63 @@ Object.keys(crops.content).forEach((key) => {
    */
   crop.seed.edibility = Number(seedInfoData[2]);
 
+  crop.seed.vendor = [];
+
+  const SEED_SHOP_STOCK = [299, 301, 302, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475, 476,
+    477, 479, 480, 481, 482, 483, 484, 485, 487, 488, 489, 490, 491, 492, 493];
+
+  if (SEED_SHOP_STOCK.indexOf(crop.seed.id) > -1) {
+    if (crop.seed.id === 431) {
+      crop.seed.vendor.push({
+        name: 'General Store',
+        price: 100,
+      });
+    } else {
+      crop.seed.vendor.push({
+        name: 'General Store',
+        price: crop.seed.sellPrice * 2,
+      });
+    }
+  }
+
+  const JOJA_STOCK = [167, 245, 246, 297, 299, 301, 302, 423, 425, 427, 429, 431, 453, 455, 472,
+    473, 474, 475, 477, 479, 480, 482, 483, 484, 487, 488, 490, 491, 492, 493];
+
+  if (JOJA_STOCK.indexOf(crop.seed.id) > -1) {
+    if (crop.seed.id === 431) {
+      crop.seed.vendor.push({
+        name: 'JojaMart',
+        price: 125,
+      });
+    } else {
+      crop.seed.vendor.push({
+        name: 'JojaMart',
+        price: Math.floor(crop.seed.sellPrice * 2.5),
+      });
+    }
+  }
+
+  if (crop.seed.id === 347) {
+    crop.seed.vendor.push({
+      name: 'Traveling Cart',
+      price: 1000,
+    });
+  } else if (crop.seed.id === 433) {
+    crop.seed.vendor.push({
+      name: 'Traveling Cart',
+      price: 2500,
+    });
+  }
+
+  const OASIS_STOCK = [478, 486, 494];
+
+  if (OASIS_STOCK.indexOf(crop.seed.id) > -1) {
+    crop.seed.vendor.push({
+      name: 'Oasis',
+      price: crop.seed.sellPrice * 2,
+    });
+  }
+
   /**
    * Crop's flower colors
    * @type {{red: number, green: number, blue: number}}

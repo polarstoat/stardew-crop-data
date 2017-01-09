@@ -8,7 +8,7 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 const yamljs = require('yamljs');
 
-const PARSED_CROPS_PATH = path.resolve(__dirname, 'crops.json');
+const OUTPUT_PATH = path.resolve(__dirname, 'crops.json');
 const CROPS_PATH = path.resolve(__dirname, 'Crops.yaml');
 const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml');
 
@@ -24,7 +24,7 @@ const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml'
 const crops = yamljs.load(CROPS_PATH);
 const objectInformation = yamljs.load(OBJECT_INFORMATION_PATH);
 
-const parsedCrops = {};
+const output = {};
 
 Object.keys(crops.content).forEach((key) => {
   const cropData = crops.content[key].split('/');
@@ -264,8 +264,8 @@ Object.keys(crops.content).forEach((key) => {
     return colors;
   })();
 
-  parsedCrops[crop.id] = crop;
+  output[crop.id] = crop;
 });
 
-jsonfile.writeFileSync(PARSED_CROPS_PATH, parsedCrops, { spaces: 2 });
-console.log(`🌱  Parsed ${Object.keys(parsedCrops).length} crops and saved to ${PARSED_CROPS_PATH}`);
+jsonfile.writeFileSync(OUTPUT_PATH, output, { spaces: 2 });
+console.log(`🌱  Parsed ${Object.keys(output).length} crops and saved to ${OUTPUT_PATH}`);

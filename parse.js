@@ -206,7 +206,7 @@ Object.keys(crops.content).forEach((key) => {
       price: crop.seed.sellPrice * 2,
       yearAvailable: 1,
     };
-    if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 100;
+    if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 200;
     if ([476, 485, 489].indexOf(crop.seed.id) > -1) crop.seed.vendor.generalStore.yearAvailable = 2;
   }
 

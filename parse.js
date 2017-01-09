@@ -206,7 +206,9 @@ Object.keys(crops.content).forEach((key) => {
       price: crop.seed.sellPrice * 2,
       yearAvailable: 1,
     };
+    // Correct Sunflower Seeds price
     if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 200;
+    // Correct year available for Garlic Seeds, Red Cabbage Seeds and Artichoke Seeds
     if ([476, 485, 489].indexOf(crop.seed.id) > -1) crop.seed.vendor.generalStore.yearAvailable = 2;
   }
 
@@ -216,6 +218,7 @@ Object.keys(crops.content).forEach((key) => {
     crop.seed.vendor.jojaMart = {
       price: Math.floor(crop.seed.sellPrice * 2.5),
     };
+    // Correct Sunflower Seeds price
     if (crop.seed.id === 431) crop.seed.vendor.jojaMart.price = 125;
   }
 
@@ -237,7 +240,7 @@ Object.keys(crops.content).forEach((key) => {
     };
   }
 
-  // Seeds sold at the Egg Festival
+  // Seeds sold at the Egg Festival (Strawberry Seeds)
   if (crop.seed.id === 745) {
     crop.seed.vendor.eggFestival = {
       price: 100,

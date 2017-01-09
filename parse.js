@@ -227,15 +227,28 @@ Object.keys(crops.content).forEach((key) => {
     }
   }
 
+  const NOT_SOLD_AT_TRAVELING_CART = [680, 681, 682, 688, 689, 690, 774, 775, 454, 460, 645, 413,
+    437, 439, 158, 159, 160, 161, 162, 163, 326, 341];
+
   if (crop.seed.id === 347) {
     crop.seed.vendor.push({
       name: 'Traveling Cart',
       price: 1000,
+      minPrice: Math.max(1 * 100, crop.seed.sellPrice * 3),
+      maxPrice: Math.max(10 * 100, crop.seed.sellPrice * 5),
     });
   } else if (crop.seed.id === 433) {
     crop.seed.vendor.push({
       name: 'Traveling Cart',
       price: 2500,
+      minPrice: Math.max(1 * 100, crop.seed.sellPrice * 3),
+      maxPrice: Math.max(10 * 100, crop.seed.sellPrice * 5),
+    });
+  } else if (NOT_SOLD_AT_TRAVELING_CART.indexOf(crop.seed.id) === -1 && crop.seed.sellPrice > 0) {
+    crop.seed.vendor.push({
+      name: 'Traveling Cart',
+      minPrice: Math.max(1 * 100, crop.seed.sellPrice * 3),
+      maxPrice: Math.max(10 * 100, crop.seed.sellPrice * 5),
     });
   }
 

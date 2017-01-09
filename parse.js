@@ -193,47 +193,43 @@ Object.keys(crops.content).forEach((key) => {
 
   crop.seed.vendor = {};
 
-  const SEED_SHOP_STOCK = [299, 301, 302, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475, 476,
-    477, 479, 480, 481, 482, 483, 484, 485, 487, 488, 489, 490, 491, 492, 493];
-
-  if (SEED_SHOP_STOCK.indexOf(crop.seed.id) > -1) {
+  // Seeds sold at Pierre's General Store
+  if ([299, 301, 302, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475, 476, 477, 479, 480, 481,
+    482, 483, 484, 485, 487, 488, 489, 490, 491, 492, 493].indexOf(crop.seed.id) > -1) {
     crop.seed.vendor.generalStore = {
       price: crop.seed.sellPrice * 2,
     };
     if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 100;
   }
 
-  const JOJA_STOCK = [167, 245, 246, 297, 299, 301, 302, 423, 425, 427, 429, 431, 453, 455, 472,
-    473, 474, 475, 477, 479, 480, 482, 483, 484, 487, 488, 490, 491, 492, 493];
-
-  if (JOJA_STOCK.indexOf(crop.seed.id) > -1) {
+  // Seeds sold at JojaMart
+  if ([167, 245, 246, 297, 299, 301, 302, 423, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475,
+    477, 479, 480, 482, 483, 484, 487, 488, 490, 491, 492, 493].indexOf(crop.seed.id) > -1) {
     crop.seed.vendor.jojaMart = {
       price: Math.floor(crop.seed.sellPrice * 2.5),
     };
     if (crop.seed.id === 431) crop.seed.vendor.jojaMart.price = 125;
   }
 
-  const NOT_SOLD_AT_TRAVELING_CART = [680, 681, 682, 688, 689, 690, 774, 775, 454, 460, 645, 413,
-    437, 439, 158, 159, 160, 161, 162, 163, 326, 341];
-
-  if (NOT_SOLD_AT_TRAVELING_CART.indexOf(crop.seed.id) === -1 && crop.seed.sellPrice > 0) {
+  // Seeds sold at the Traveling Cart
+  if ([680, 681, 682, 688, 689, 690, 774, 775, 454, 460, 645, 413, 437, 439, 158, 159, 160, 161,
+    162, 163, 326, 341].indexOf(crop.seed.id) === -1 && crop.seed.sellPrice > 0) {
     crop.seed.vendor.travelingCart = {
       minPrice: Math.max(1 * 100, crop.seed.sellPrice * 3),
       maxPrice: Math.max(10 * 100, crop.seed.sellPrice * 5),
     };
   }
-
   if (crop.seed.id === 347) crop.seed.vendor.travelingCart.price = 1000;
   else if (crop.seed.id === 433) crop.seed.vendor.travelingCart.price = 2500;
 
-  const OASIS_STOCK = [478, 486, 494];
-
-  if (OASIS_STOCK.indexOf(crop.seed.id) > -1) {
+  // Seeds sold at Oasis (Desert shop)
+  if ([478, 486, 494].indexOf(crop.seed.id) > -1) {
     crop.seed.vendor.oasis = {
       price: crop.seed.sellPrice * 2,
     };
   }
 
+  // Seeds sold at the Egg Festival
   if (crop.seed.id === 745) {
     crop.seed.vendor.eggFestival = {
       price: 100,

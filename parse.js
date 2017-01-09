@@ -261,6 +261,13 @@ Object.keys(crops.content).forEach((key) => {
     });
   }
 
+  if (crop.seed.id === 745) {
+    crop.seed.vendor.push({
+      name: 'Egg Festival',
+      price: 100,
+    });
+  }
+
   /**
    * Crop's flower colors
    * @type {{red: number, green: number, blue: number}}

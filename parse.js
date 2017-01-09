@@ -20,7 +20,7 @@ const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml'
   }
 });
 
-// Stardew Valley data files
+// Load Stardew Valley data files
 const crops = yamljs.load(CROPS_PATH);
 const objectInformation = yamljs.load(OBJECT_INFORMATION_PATH);
 
@@ -127,7 +127,7 @@ Object.keys(crops.content).forEach((key) => {
    * Whether the crop can become giant
    * @type {boolean}
    */
-  crop.canBeGiant = [190, 254, 276].indexOf(crop.id) > -1;
+  crop.canBeGiant = ([190, 254, 276].indexOf(crop.id) > -1);
 
   crop.harvest = {};
 
@@ -206,6 +206,7 @@ Object.keys(crops.content).forEach((key) => {
       price: crop.seed.sellPrice * 2,
       yearAvailable: 1,
     };
+
     // Correct Sunflower Seeds price
     if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 200;
     // Correct year available for Garlic Seeds, Red Cabbage Seeds and Artichoke Seeds
@@ -218,6 +219,7 @@ Object.keys(crops.content).forEach((key) => {
     crop.seed.vendor.jojaMart = {
       price: Math.floor(crop.seed.sellPrice * 2.5),
     };
+
     // Correct Sunflower Seeds price
     if (crop.seed.id === 431) crop.seed.vendor.jojaMart.price = 125;
   }
@@ -230,7 +232,9 @@ Object.keys(crops.content).forEach((key) => {
       maxPrice: Math.max(10 * 100, crop.seed.sellPrice * 5),
     };
   }
+  // Rare Seed (grows Sweet Gem Berry)
   if (crop.seed.id === 347) crop.seed.vendor.travelingCart.price = 1000;
+  // Coffee Bean
   else if (crop.seed.id === 433) crop.seed.vendor.travelingCart.price = 2500;
 
   // Seeds sold at Oasis (Desert shop)

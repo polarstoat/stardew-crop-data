@@ -81,9 +81,13 @@ The data for Parsnip is given as an example of the structure created.
 
 ## Notes
 
-#### Energy restored
+#### Helath/Energy restored
 
-The amount of energy restored by consumable crops (which do not have a `healthRestored` value of `-300`) is 2.5x the amount of health restored.
+Crops with an `edibility` of `-300` are not consumable and thus do not restore any health or energy.
+
+The amount of health restored by a crop is the [absolute value](https://en.wikipedia.org/wiki/Absolute_value) of its `edibility` (therefore it is never negative).
+
+The amount of energy restored by a crop is 2.5x its `edibility` value (therefore it can be negative).
 
 #### Category names
 

@@ -2,19 +2,20 @@
 
 // Core modules
 const fs = require('fs');
+const path = require('path');
 
 // Custom modules
 const jsonfile = require('jsonfile');
 const YAML = require('yamljs');
 
-const PARSED_CROPS_PATH = 'crops.json';
-const CROPS_PATH = 'Crops.yaml';
-const OBJECT_INFORMATION_PATH = 'ObjectInformation.yaml';
+const PARSED_CROPS_PATH = path.resolve(__dirname, 'crops.json');
+const CROPS_PATH = path.resolve(__dirname, 'Crops.yaml');
+const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml');
 
 // Check Stardew Valley data files exist
-[CROPS_PATH, OBJECT_INFORMATION_PATH].forEach((path) => {
-  if (!fs.existsSync(path)) {
-    console.error(new Error(`${path} does not exist`));
+[CROPS_PATH, OBJECT_INFORMATION_PATH].forEach((filePath) => {
+  if (!fs.existsSync(filePath)) {
+    console.error(new Error(`${filePath} does not exist`));
     process.exit(1);
   }
 });

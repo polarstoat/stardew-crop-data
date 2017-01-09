@@ -130,19 +130,19 @@ Object.keys(crops.content).forEach((key) => {
      * Minimum yield from each harvest
      * @type {number}
      */
-    crop.harvest.minimum = cropHarvestData[0];
+    crop.harvest.minHarvest = cropHarvestData[0];
 
     /**
      * Maximum yield from each harvest
      * @type {number}
      */
-    crop.harvest.maximum = cropHarvestData[1];
+    crop.harvest.maxHarvest = cropHarvestData[1];
 
     /**
      * Field purpose not entirely known. Named after decompiled Crop.cs from Stardew Valley.exe
      * @type {number}
      */
-    crop.harvest.maximumIncreasePerFarmingLevel = cropHarvestData[2];
+    crop.harvest.maxHarvestIncreasePerFarmingLevel = cropHarvestData[2];
 
     /**
      * Field purpose not entirely known. Named after decompiled Crop.cs from Stardew Valley.exe

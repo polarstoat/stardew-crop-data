@@ -6,7 +6,7 @@ const path = require('path');
 
 // Custom modules
 const jsonfile = require('jsonfile');
-const YAML = require('yamljs');
+const yamljs = require('yamljs');
 
 const PARSED_CROPS_PATH = path.resolve(__dirname, 'crops.json');
 const CROPS_PATH = path.resolve(__dirname, 'Crops.yaml');
@@ -21,8 +21,8 @@ const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml'
 });
 
 // Stardew Valley data files
-const crops = YAML.load(CROPS_PATH);
-const objectInformation = YAML.load(OBJECT_INFORMATION_PATH);
+const crops = yamljs.load(CROPS_PATH);
+const objectInformation = yamljs.load(OBJECT_INFORMATION_PATH);
 
 const parsedCrops = {};
 

@@ -8,6 +8,17 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 const yamljs = require('yamljs');
 
+// Constants (data from decompiled Stardew Valley.exe v1.11)
+const GIANT_CROP_IDS = [190, 254, 276];
+const YEAR_2_CROP_IDS = [476, 485, 489];
+const GENERAL_STORE_STOCK_IDS = [299, 301, 302, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475,
+  476, 477, 479, 480, 481, 482, 483, 484, 485, 487, 488, 489, 490, 491, 492, 493];
+const JOJAMART_STOCK_IDS = [167, 245, 246, 297, 299, 301, 302, 423, 425, 427, 429, 431, 453, 455,
+  472, 473, 474, 475, 477, 479, 480, 482, 483, 484, 487, 488, 490, 491, 492, 493];
+const NOT_SOLD_AT_TRAVELING_CART_IDS = [680, 681, 682, 688, 689, 690, 774, 775, 454, 460, 645, 413,
+  437, 439, 158, 159, 160, 161, 162, 163, 326, 341];
+const OASIS_STOCK_IDS = [478, 486, 494];
+
 const OUTPUT_PATH = path.resolve(__dirname, 'crops.json');
 const CROPS_PATH = path.resolve(__dirname, 'Crops.yaml');
 const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml');
@@ -127,7 +138,7 @@ Object.keys(crops.content).forEach((key) => {
    * Whether the crop can become giant
    * @type {boolean}
    */
-  crop.canBeGiant = ([190, 254, 276].indexOf(crop.id) > -1);
+  crop.canBeGiant = (GIANT_CROP_IDS.indexOf(crop.id) > -1);
 
   crop.harvest = {};
 
@@ -200,8 +211,7 @@ Object.keys(crops.content).forEach((key) => {
   crop.seed.vendor = {};
 
   // Seeds sold at Pierre's General Store
-  if ([299, 301, 302, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475, 476, 477, 479, 480, 481,
-    482, 483, 484, 485, 487, 488, 489, 490, 491, 492, 493].indexOf(crop.seed.id) > -1) {
+  if (GENERAL_STORE_STOCK_IDS.indexOf(crop.seed.id) > -1) {
     crop.seed.vendor.generalStore = {
       price: crop.seed.sellPrice * 2,
       yearAvailable: 1,
@@ -210,12 +220,11 @@ Object.keys(crops.content).forEach((key) => {
     // Correct Sunflower Seeds price
     if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 200;
     // Correct year available for Garlic Seeds, Red Cabbage Seeds and Artichoke Seeds
-    if ([476, 485, 489].indexOf(crop.seed.id) > -1) crop.seed.vendor.generalStore.yearAvailable = 2;
+    if (YEAR_2_CROP_IDS.indexOf(crop.seed.id) > -1) crop.seed.vendor.generalStore.yearAvailable = 2;
   }
 
   // Seeds sold at JojaMart
-  if ([167, 245, 246, 297, 299, 301, 302, 423, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475,
-    477, 479, 480, 482, 483, 484, 487, 488, 490, 491, 492, 493].indexOf(crop.seed.id) > -1) {
+  if (JOJAMART_STOCK_IDS.indexOf(crop.seed.id) > -1) {
     crop.seed.vendor.jojaMart = {
       price: Math.floor(crop.seed.sellPrice * 2.5),
     };
@@ -225,8 +234,7 @@ Object.keys(crops.content).forEach((key) => {
   }
 
   // Seeds sold at the Traveling Cart
-  if ([680, 681, 682, 688, 689, 690, 774, 775, 454, 460, 645, 413, 437, 439, 158, 159, 160, 161,
-    162, 163, 326, 341].indexOf(crop.seed.id) === -1 && crop.seed.sellPrice > 0) {
+  if (NOT_SOLD_AT_TRAVELING_CART_IDS.indexOf(crop.seed.id) === -1 && crop.seed.sellPrice > 0) {
     crop.seed.vendor.travelingCart = {
       minPrice: Math.max(1 * 100, crop.seed.sellPrice * 3),
       maxPrice: Math.max(10 * 100, crop.seed.sellPrice * 5),
@@ -238,7 +246,7 @@ Object.keys(crops.content).forEach((key) => {
   else if (crop.seed.id === 433) crop.seed.vendor.travelingCart.price = 2500;
 
   // Seeds sold at Oasis (Desert shop)
-  if ([478, 486, 494].indexOf(crop.seed.id) > -1) {
+  if (OASIS_STOCK_IDS.indexOf(crop.seed.id) > -1) {
     crop.seed.vendor.oasis = {
       price: crop.seed.sellPrice * 2,
     };

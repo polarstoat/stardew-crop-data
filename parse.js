@@ -123,6 +123,12 @@ Object.keys(crops.content).forEach((key) => {
    */
   crop.trellis = (cropData[7] === 'true');
 
+  /**
+   * Whether the crop can become giant
+   * @type {boolean}
+   */
+  crop.canBeGiant = [190, 254, 276].indexOf(crop.id) > -1;
+
   crop.harvest = {};
 
   if (cropHarvestData.length === 4) {

@@ -112,3 +112,9 @@ const CATEGORY_NAMES = {
 
 categoryName = CATEGORY_NAMES[category];
 ```
+
+#### JojaMart membership
+
+With a JojaMart membership seed prices become the same as Pierre's General Store*, which is `seed.sellPrice * 2`.
+
+\* Except for Sunflower Seeds which are 125g without membership and 100g with membership, compared to 200g at the General Store

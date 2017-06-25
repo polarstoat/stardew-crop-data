@@ -78,6 +78,22 @@ Object.keys(crops.content).forEach((key) => {
   crop.category = cropInfoData[3];
 
   /**
+   * Crop's sell value
+   * @type {number}
+   */
+  crop.sellPrice = Number(cropInfoData[1]);
+
+  /**
+   * Amount of health restored on consumption
+   * Amount of energy restored on consumption is this * 2.5
+   * Negative values cause energy loss but not health loss
+   * For non-consumable crops this value will be -300
+   * Named after decompiled Crop.cs from Stardew Valley.exe
+   * @type {number}
+   */
+  crop.edibility = Number(cropInfoData[2]);
+
+  /**
    * Crop's index in crops.png tilesheet
    * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
@@ -105,22 +121,6 @@ Object.keys(crops.content).forEach((key) => {
    * @type {number}
    */
   crop.regrowAfterHarvest = Number(cropData[4]);
-
-  /**
-   * Crop's sell value
-   * @type {number}
-   */
-  crop.sellPrice = Number(cropInfoData[1]);
-
-  /**
-   * Amount of health restored on consumption
-   * Amount of energy restored on consumption is this * 2.5
-   * Negative values cause energy loss but not health loss
-   * For non-consumable crops this value will be -300
-   * Named after decompiled Crop.cs from Stardew Valley.exe
-   * @type {number}
-   */
-  crop.edibility = Number(cropInfoData[2]);
 
   /**
    * Is the crop harvested with the scythe

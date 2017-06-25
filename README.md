@@ -2,7 +2,7 @@
 
 > Parses *Stardew Valley* data files and extracts the crop data as JSON for use in web apps
 
-[![Stardew Valley](https://img.shields.io/badge/stardew_valley-v1.11-blue.svg)](http://stardewvalleywiki.com/Version_History#Version_1.11)
+[![Stardew Valley](https://img.shields.io/badge/stardew_valley-v1.2.30-blue.svg)](http://stardewvalleywiki.com/Version_History#Version_1.2.30)
 
 ## Usage
 

@@ -8,15 +8,15 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 const yamljs = require('yamljs');
 
-// Constants (data from decompiled Stardew Valley.exe v1.11)
+// Constants (data from decompiled Stardew Valley.exe v1.2.30)
 const GIANT_CROP_IDS = [190, 254, 276];
 const YEAR_2_CROP_IDS = [476, 485, 489];
-const GENERAL_STORE_STOCK_IDS = [299, 301, 302, 425, 427, 429, 431, 453, 455, 472, 473, 474, 475,
-  476, 477, 479, 480, 481, 482, 483, 484, 485, 487, 488, 489, 490, 491, 492, 493];
-const JOJAMART_STOCK_IDS = [167, 245, 246, 297, 299, 301, 302, 423, 425, 427, 429, 431, 453, 455,
-  472, 473, 474, 475, 477, 479, 480, 482, 483, 484, 487, 488, 490, 491, 492, 493];
-const NOT_SOLD_AT_TRAVELING_CART_IDS = [680, 681, 682, 688, 689, 690, 774, 775, 454, 460, 645, 413,
-  437, 439, 158, 159, 160, 161, 162, 163, 326, 341];
+const GENERAL_STORE_STOCK_IDS = [299, 301, 302, 425, 427, 429, 431, 431, 453, 455, 472, 473, 474,
+  475, 477, 479, 480, 481, 482, 483, 483, 484, 487, 487, 488, 490, 491, 492, 493];
+const JOJAMART_STOCK_IDS = [245, 246, 297, 299, 301, 302, 423, 425, 427, 429, 431, 453, 455, 472,
+  473, 474, 475, 477, 479, 480, 482, 483, 484, 487, 488, 490, 491, 492, 493];
+const NOT_SOLD_AT_TRAVELING_CART_IDS = [158, 159, 160, 161, 162, 163, 326, 341, 413, 437, 439, 454,
+  460, 645, 680, 681, 682, 688, 689, 690, 774, 775];
 const OASIS_STOCK_IDS = [478, 486, 494];
 
 const OUTPUT_PATH = path.resolve(__dirname, 'crops.json');
@@ -63,7 +63,7 @@ Object.keys(crops.content).forEach((key) => {
    * Crop's description
    * @type {string}
    */
-  crop.description = cropInfoData[4];
+  crop.description = cropInfoData[5];
 
   /**
    * Crop's ID and key in ObjectInformation.content and index in springobjects.png tilesheet
@@ -180,7 +180,7 @@ Object.keys(crops.content).forEach((key) => {
    * Seed's description
    * @type {string}
    */
-  crop.seed.description = seedInfoData[4];
+  crop.seed.description = seedInfoData[5];
 
   /**
    * Seed's ID

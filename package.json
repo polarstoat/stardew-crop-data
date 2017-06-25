@@ -4,8 +4,8 @@
   "description": "Parses Stardew Valley data files and extracts the crop data as JSON for use in web apps",
   "main": "",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --no-ignore **/*.js; true",
-    "start": "node parse.js",
+    "lint": "./node_modules/.bin/eslint --no-ignore **/*.js .eslintrc.js; true",
+    "start": "node ./parse.js",
     "test": "npm run lint"
   },
   "author": "Polar stoat",
@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/polarstoat/stardew-crop-data#readme",
   "devDependencies": {
-    "eslint": "^3.12.2",
-    "eslint-config-airbnb-base": "^11.0.0",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.6.0"
   },
   "dependencies": {
     "jsonfile": "^2.4.0",
-    "yamljs": "^0.2.8"
+    "yamljs": "^0.2.10"
   }
 }

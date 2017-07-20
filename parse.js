@@ -60,28 +60,114 @@ Object.keys(crops.content).forEach((key) => {
   crop.name = cropInfoData[0];
 
   /**
+   * Crop's Stardew Valley Wiki URL
+   * @type {string}
+   */
+  crop.url = `http://stardewvalleywiki.com/${crop.name.replace(/ /g, '_')}`;
+
+  /**
+   * Crop's image file name
+   * @type {string}
+   */
+  crop.img = `${crop.name.toLowerCase().replace(/ /g, '')}.png`;
+
+  crop.seeds = {
+    pierre: 0,
+    joja: 0,
+    special: 0,
+    specialLoc: '',
+    specialUrl: '',
+  };
+
+  /**
+   * Seed's ID
+   * @type {number}
+   */
+  const seedID = Number(key);
+
+  /**
+   * Seed's sell value
+   * @type {number}
+   */
+  const seedSellPrice = Number(seedInfoData[1]);
+
+  // Seeds sold at Pierre's General Store
+  if (GENERAL_STORE_STOCK_IDS.indexOf(seedID) > -1) {
+    crop.seeds.pierre = seedSellPrice * 2;
+
+    // Correct Sunflower Seeds price
+    if (seedID === 431) crop.seeds.pierre = 200;
+  }
+
+  // Seeds sold at JojaMart
+  if (JOJAMART_STOCK_IDS.indexOf(seedID) > -1) {
+    crop.seeds.joja = Math.floor(seedSellPrice * 2.5);
+
+    // Correct Sunflower Seeds price
+    if (seedID === 431) crop.seeds.joja = 125;
+  }
+
+  // Seeds sold at the Traveling Cart
+  // if (NOT_SOLD_AT_TRAVELING_CART_IDS.indexOf(seedID) === -1 && seedSellPrice > 0) {
+  //   crop.seeds.travelingCart = {
+  //     minPrice: Math.max(1 * 100, seedSellPrice * 3),
+  //     maxPrice: Math.max(10 * 100, seedSellPrice * 5),
+  //   };
+  // }
+
+  // Seeds sold at Oasis (Desert shop)
+  if (OASIS_STOCK_IDS.indexOf(seedID) > -1) {
+    crop.seeds.special = seedSellPrice * 2;
+    crop.seeds.specialLoc = 'Oasis';
+    crop.seeds.specialUrl = 'http://stardewvalleywiki.com/Oasis';
+  // Seeds sold at the Egg Festival (Strawberry Seeds)
+  } else if (seedID === 745) {
+    crop.seeds.special = 100;
+    crop.seeds.specialLoc = 'Egg Festival';
+    crop.seeds.specialUrl = 'http://stardewvalleywiki.com/Egg_Festival';
+  // Rare Seed (grows Sweet Gem Berry)
+  } else if (seedID === 347) {
+    crop.seeds.special = 1000;
+    crop.seeds.specialLoc = 'Travelling Cart';
+    crop.seeds.specialUrl = 'http://stardewvalleywiki.com/Travelling_Cart';
+  // Coffee Bean
+  } else if (seedID === 433) {
+    crop.seeds.special = 2500;
+    crop.seeds.specialLoc = 'Travelling Cart';
+    crop.seeds.specialUrl = 'http://stardewvalleywiki.com/Travelling_Cart';
+  // Ancient Fruit
+  } else if (seedID === 499) {
+    crop.seeds.special = 450;
+    crop.seeds.specialLoc = 'Travelling Cart';
+    crop.seeds.specialUrl = 'http://stardewvalleywiki.com/Travelling_Cart';
+  }
+
+  /**
    * Crop's description
    * @type {string}
    */
-  crop.description = cropInfoData[5];
+  // crop.description = cropInfoData[5];
 
   /**
    * Crop's ID and key in ObjectInformation.content and index in springobjects.png tilesheet
    * @type {number}
    */
-  crop.id = Number(cropData[3]);
+  // crop.id = Number(cropData[3]);
 
   /**
    * Crop's category in player's inventory
    * @type {string}
    */
-  crop.category = cropInfoData[3];
+  const cropCategory = cropInfoData[3];
+
+  if (cropCategory === 'Basic -81') return;
+  if (crop.name === 'Spice Berry') return;
 
   /**
    * Crop's sell value
    * @type {number}
    */
-  crop.sellPrice = Number(cropInfoData[1]);
+  // crop.sellPrice = Number(cropInfoData[1]);
 
   /**
    * Amount of health restored on consumption
@@ -91,28 +177,32 @@ Object.keys(crops.content).forEach((key) => {
    * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.edibility = Number(cropInfoData[2]);
+  // crop.edibility = Number(cropInfoData[2]);
 
   /**
    * Crop's index in crops.png tilesheet
    * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.rowInSpriteSheet = Number(cropData[2]);
+  // crop.rowInSpriteSheet = Number(cropData[2]);
 
   /**
    * Seasons crop can grow in
    * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {string[]}
    */
-  crop.seasonsToGrowIn = cropData[1].split(' ');
+  // crop.seasonsToGrowIn = cropData[1].split(' ');
+
+  crop.growth = {};
+
+  crop.growth.initial = cropData[0].split(' ').map(Number).reduce((sum, value) => sum + value);
 
   /**
    * Each item represents days spent in each stage of growth
    * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number[]}
    */
-  crop.phaseDays = cropData[0].split(' ').map(Number);
+  // crop.phaseDays = cropData[0].split(' ').map(Number);
 
   /**
    * Days taken after first harvest for crop to produce again. If crop doesn't produce again this
@@ -120,85 +210,124 @@ Object.keys(crops.content).forEach((key) => {
    * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.regrowAfterHarvest = Number(cropData[4]);
+  crop.growth.regrow = Number(cropData[4]) === -1 ? 0 : Number(cropData[4]);
 
-  /**
-   * Is the crop harvested with the scythe
-   * @type {boolean}
-   */
-  crop.scythe = Boolean(Number(cropData[5]));
+  crop.produce = {};
 
-  /**
-   * Does the crop grow on a trellis. May technically be whether the crop has a solid bounding box
-   * @type {boolean}
-   */
-  crop.trellis = (cropData[7] === 'true');
+  crop.produce.extra = 0;
 
-  /**
-   * Whether the crop can become giant
-   * @type {boolean}
-   */
-  crop.canBeGiant = (GIANT_CROP_IDS.indexOf(crop.id) > -1);
-
-  crop.harvest = {};
+  crop.produce.extraPerc = 0;
 
   if (cropHarvestData.length === 4) {
     /**
      * Minimum yield from each harvest
      * @type {number}
      */
-    crop.harvest.minHarvest = cropHarvestData[0];
+    const minHarvest = cropHarvestData[0];
 
     /**
      * Maximum yield from each harvest
      * @type {number}
      */
-    crop.harvest.maxHarvest = cropHarvestData[1];
+    const maxHarvest = cropHarvestData[1];
 
     /**
      * Field purpose not entirely known. Named after decompiled Crop.cs from Stardew Valley.exe
      * @type {number}
      */
-    crop.harvest.maxHarvestIncreasePerFarmingLevel = cropHarvestData[2];
+    // crop.harvest.maxHarvestIncreasePerFarmingLevel = cropHarvestData[2];
 
     /**
      * Field purpose not entirely known. Named after decompiled Crop.cs from Stardew Valley.exe
      * @type {number}
      */
-    crop.harvest.chanceForExtraCrops = cropHarvestData[3];
+    // crop.harvest.chanceForExtraCrops = cropHarvestData[3];
+
+    if (minHarvest > 1) {
+      crop.produce.extra = minHarvest - 1;
+      crop.produce.extraPerc = 1;
+    } else {
+      crop.produce.extra = 1;
+      crop.produce.extraPerc = cropHarvestData[3];
+    }
   }
 
-  crop.seed = {};
+  crop.produce.rawN = Number(cropInfoData[1]);
+
+  crop.produce.rawS = Math.floor(crop.produce.rawN * 1.25);
+
+  crop.produce.rawG = Math.floor(crop.produce.rawN * 1.5);
+
+  crop.produce.jar = 0;
+
+  crop.produce.keg = 0;
+
+  crop.produce.jarType = '';
+
+  crop.produce.kegType = '';
+
+  // Vegetables
+  if (cropCategory === 'Basic -75') {
+    crop.produce.jar = (crop.produce.rawN * 2) + 50;
+    crop.produce.keg = Math.floor(crop.produce.rawN * 2.25);
+    crop.produce.jarType = 'Pickles';
+    crop.produce.kegType = 'Juice';
+  // Fruits
+  } else if (cropCategory === 'Basic -79') {
+    crop.produce.jar = (crop.produce.rawN * 2) + 50;
+    crop.produce.keg = crop.produce.rawN * 3;
+    crop.produce.jarType = 'Jelly';
+    crop.produce.kegType = 'Wine';
+  }
+
+  if (crop.name === 'Hops') {
+    crop.produce.keg = 300;
+    crop.produce.kegType = 'Pale Ale';
+  } else if (crop.name === 'Wheat') {
+    crop.produce.keg = 200;
+    crop.produce.kegType = 'Beer';
+  } else if (crop.name === 'Coffee Bean') {
+    crop.produce.keg = 30;
+    crop.produce.kegType = 'Coffee';
+  }
+
+  /**
+   * Is the crop harvested with the scythe
+   * @type {boolean}
+   */
+  // crop.scythe = Boolean(Number(cropData[5]));
+
+  /**
+   * Does the crop grow on a trellis. May technically be whether the crop has a solid bounding box
+   * @type {boolean}
+   */
+  // crop.trellis = (cropData[7] === 'true');
+
+  /**
+   * Whether the crop can become giant
+   * @type {boolean}
+   */
+  // crop.canBeGiant = (GIANT_CROP_IDS.indexOf(crop.id) > -1);
+
+  // crop.seed = {};
 
   /**
    * Seed's name
    * @type {string}
    */
-  crop.seed.name = seedInfoData[0];
+  // crop.seed.name = seedInfoData[0];
 
   /**
    * Seed's description
    * @type {string}
    */
-  crop.seed.description = seedInfoData[5];
-
-  /**
-   * Seed's ID
-   * @type {number}
-   */
-  crop.seed.id = Number(key);
+  // crop.seed.description = seedInfoData[5];
 
   /**
    * Seed's category. In Stardew Valley v1.11 this is always 'Seeds -74'
    * @type {string}
    */
-  crop.seed.category = seedInfoData[3];
-
-  /**
-   * Seed's sell value
-   * @type {number}
-   */
-  crop.seed.sellPrice = Number(seedInfoData[1]);
+  // crop.seed.category = seedInfoData[3];
 
   /**
    * Would be the amount of health restored on consumption
@@ -206,77 +335,26 @@ Object.keys(crops.content).forEach((key) => {
    * Named after decompiled Crop.cs from Stardew Valley.exe
    * @type {number}
    */
-  crop.seed.edibility = Number(seedInfoData[2]);
-
-  crop.seed.vendor = {};
-
-  // Seeds sold at Pierre's General Store
-  if (GENERAL_STORE_STOCK_IDS.indexOf(crop.seed.id) > -1) {
-    crop.seed.vendor.generalStore = {
-      price: crop.seed.sellPrice * 2,
-      yearAvailable: 1,
-    };
-
-    // Correct Sunflower Seeds price
-    if (crop.seed.id === 431) crop.seed.vendor.generalStore.price = 200;
-    // Correct year available for Garlic Seeds, Red Cabbage Seeds and Artichoke Seeds
-    if (YEAR_2_CROP_IDS.indexOf(crop.seed.id) > -1) crop.seed.vendor.generalStore.yearAvailable = 2;
-  }
-
-  // Seeds sold at JojaMart
-  if (JOJAMART_STOCK_IDS.indexOf(crop.seed.id) > -1) {
-    crop.seed.vendor.jojaMart = {
-      price: Math.floor(crop.seed.sellPrice * 2.5),
-    };
-
-    // Correct Sunflower Seeds price
-    if (crop.seed.id === 431) crop.seed.vendor.jojaMart.price = 125;
-  }
-
-  // Seeds sold at the Traveling Cart
-  if (NOT_SOLD_AT_TRAVELING_CART_IDS.indexOf(crop.seed.id) === -1 && crop.seed.sellPrice > 0) {
-    crop.seed.vendor.travelingCart = {
-      minPrice: Math.max(1 * 100, crop.seed.sellPrice * 3),
-      maxPrice: Math.max(10 * 100, crop.seed.sellPrice * 5),
-    };
-  }
-  // Rare Seed (grows Sweet Gem Berry)
-  if (crop.seed.id === 347) crop.seed.vendor.travelingCart.price = 1000;
-  // Coffee Bean
-  else if (crop.seed.id === 433) crop.seed.vendor.travelingCart.price = 2500;
-
-  // Seeds sold at Oasis (Desert shop)
-  if (OASIS_STOCK_IDS.indexOf(crop.seed.id) > -1) {
-    crop.seed.vendor.oasis = {
-      price: crop.seed.sellPrice * 2,
-    };
-  }
-
-  // Seeds sold at the Egg Festival (Strawberry Seeds)
-  if (crop.seed.id === 745) {
-    crop.seed.vendor.eggFestival = {
-      price: 100,
-    };
-  }
+  // crop.seed.edibility = Number(seedInfoData[2]);
 
   /**
    * Crop's flower colors
    * @type {{red: number, green: number, blue: number}}
    */
-  crop.flowerColors = (() => {
-    const colors = [];
-    for (let i = 0; i < cropFlowerColorData.length / 3; i += 1) {
-      const j = i * 3;
-      colors.push({
-        red: cropFlowerColorData[j],
-        green: cropFlowerColorData[j + 1],
-        blue: cropFlowerColorData[j + 2],
-      });
-    }
-    return colors;
-  })();
+  // crop.flowerColors = (() => {
+  //   const colors = [];
+  //   for (let i = 0; i < cropFlowerColorData.length / 3; i += 1) {
+  //     const j = i * 3;
+  //     colors.push({
+  //       red: cropFlowerColorData[j],
+  //       green: cropFlowerColorData[j + 1],
+  //       blue: cropFlowerColorData[j + 2],
+  //     });
+  //   }
+  //   return colors;
+  // })();
 
-  output[crop.id] = crop;
+  output[crop.img.replace(/\.png$/, '')] = crop;
 });
 
 jsonfile.writeFileSync(OUTPUT_PATH, output, { spaces: 2 });

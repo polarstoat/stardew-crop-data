@@ -6,7 +6,7 @@
 
 ## Usage
 
-1. Extract `Data/Crops.xnb` and `Data/ObjectInformation.xnb` using [XNBNode](http://www.mediafire.com/download/v4ttswl7tsdaynm/XNBNode.0.2.1.7z) *(unfortunately XNBNode currently only works on Windows)* from the Stardew Valley game folder
+1. Extract `Data/Crops.xnb` and `Data/ObjectInformation.xnb` using [XNBNode](https://www.mediafire.com/file/fwg3p0rmp3q2v36/xnb_node.0.2.2.7z) *(unfortunately XNBNode currently only works on Windows)* from the Stardew Valley game folder
    * macOS: `~/Library/Application Support/Steam/steamapps/common/Stardew Valley/Contents`
    * Linux: `~/.steam/steam/steamapps/common/Stardew Valley/Content`
    * Windows: `C:\Programs Files\Steam\SteamApps\common\Stardew Valley\Content`

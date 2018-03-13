@@ -23,7 +23,8 @@
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.3.2",
     "eslint-plugin-import": "^2.9.0",
-    "markdown-link-check": "^3.1.6"
+    "markdown-link-check": "^3.1.6",
+    "pre-commit": "^1.2.2"
   },
   "dependencies": {
     "jsonfile": "^2.4.0",

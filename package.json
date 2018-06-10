@@ -1,6 +1,6 @@
 {
   "name": "stardew-crop-data",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parses Stardew Valley data files and extracts the crop data as JSON for use in web apps",
   "main": "",
   "scripts": {

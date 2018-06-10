@@ -8,5 +8,6 @@ module.exports = {
   ],
   rules: {
     'no-console': 'off',
+    'prefer-destructuring': 'off',
   },
 };

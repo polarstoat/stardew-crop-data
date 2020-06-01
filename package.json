@@ -2,11 +2,11 @@
   "name": "stardew-crop-data",
   "version": "1.0.3",
   "description": "Parses Stardew Valley data files and extracts the crop data as JSON for use in web apps",
-  "main": "",
+  "main": "parse.js",
   "scripts": {
     "check-links": "markdown-link-check README.md",
     "lint": "eslint \"**/*.js\"",
-    "start": "node parse.js",
+    "start": "node .",
     "test": "npm run lint && npm run check-links"
   },
   "author": "Polar stoat",

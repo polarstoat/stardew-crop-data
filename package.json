@@ -20,8 +20,7 @@
   },
   "homepage": "https://github.com/polarstoat/stardew-crop-data#readme",
   "devDependencies": {
-    "markdown-link-check": "^3.8.1",
-    "pre-commit": "^1.2.2"
+    "markdown-link-check": "^3.8.1"
   },
   "dependencies": {
     "eslint": "^6.8.0",

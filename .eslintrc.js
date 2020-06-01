@@ -6,6 +6,9 @@ module.exports = {
   plugins: [
     'import',
   ],
+  ignorePatterns: [
+    '!.eslintrc.js',
+  ],
   rules: {
     'no-console': 'off',
     'prefer-destructuring': 'off',

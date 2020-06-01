@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "check-links": "markdown-link-check README.md",
-    "lint": "eslint --no-ignore **/*.js .eslintrc.js; true",
+    "lint": "eslint \"**/*.js\"",
     "start": "node parse.js",
     "test": "npm run lint && npm run check-links"
   },

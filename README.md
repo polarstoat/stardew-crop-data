@@ -3,11 +3,13 @@
 Parses *Stardew Valley* data files and extracts the crop data as JSON for use in web apps
 
 [![Stardew Valley](https://img.shields.io/badge/stardew_valley-v1.3.36-blue.svg)](https://stardewvalleywiki.com/Version_History#1.3.36)
+![GitHub tag](https://img.shields.io/github/v/tag/polarstoat/stardew-crop-data)
+![npm dependencies](https://img.shields.io/david/polarstoat/stardew-crop-data)
 
 ## Usage
 
-1. Extract `Data/Crops.xnb` and `Data/ObjectInformation.xnb` using [XNBNode](https://www.mediafire.com/file/fwg3p0rmp3q2v36/xnb_node.0.2.2.7z) *(unfortunately XNBNode currently only works on Windows)* from the Stardew Valley game folder
-   * macOS: `~/Library/Application Support/Steam/steamapps/common/Stardew Valley/Contents`
+1. Extract `Data/Crops.xnb` and `Data/ObjectInformation.xnb` using [xnbcli](https://github.com/LeonBlade/xnbcli/) from the Stardew Valley game folder
+   * macOS: `~/Library/Application Support/Steam/steamapps/common/Stardew Valley/Contents/Resources/Content`
    * Linux: `~/.steam/steam/steamapps/common/Stardew Valley/Content`
    * Windows: `C:\Programs Files\Steam\SteamApps\common\Stardew Valley\Content`
 1. Copy `Crops.json` and `ObjectInformation.json` into this folder

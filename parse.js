@@ -6,7 +6,6 @@ const path = require('path');
 
 // Custom modules
 const jsonfile = require('jsonfile');
-const yamljs = require('yamljs');
 
 // Constants (data from decompiled Stardew Valley.exe v1.2.30)
 const GIANT_CROP_IDS = [190, 254, 276];
@@ -19,9 +18,9 @@ const NOT_SOLD_AT_TRAVELING_CART_IDS = [158, 159, 160, 161, 162, 163, 326, 341, 
   460, 645, 680, 681, 682, 688, 689, 690, 774, 775, 802];
 const OASIS_STOCK_IDS = [478, 486, 494, 802];
 
-const OUTPUT_PATH = path.resolve(__dirname, 'crops.json');
-const CROPS_PATH = path.resolve(__dirname, 'Crops.yaml');
-const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml');
+const OUTPUT_PATH = path.resolve(__dirname, 'parsed-crop-data.json');
+const CROPS_PATH = path.resolve(__dirname, 'Crops.json');
+const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.json');
 
 // Check Stardew Valley data files exist
 [CROPS_PATH, OBJECT_INFORMATION_PATH].forEach((filePath) => {
@@ -32,8 +31,8 @@ const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.yaml'
 });
 
 // Load Stardew Valley data files
-const crops = yamljs.load(CROPS_PATH);
-const objectInformation = yamljs.load(OBJECT_INFORMATION_PATH);
+const crops = jsonfile.readFileSync(CROPS_PATH);
+const objectInformation = jsonfile.readFileSync(OBJECT_INFORMATION_PATH);
 
 const output = {};
 

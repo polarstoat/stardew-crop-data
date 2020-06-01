@@ -1,6 +1,6 @@
 # :seedling: Stardew Valley crop data
 
-> Parses *Stardew Valley* data files and extracts the crop data as JSON for use in web apps
+Parses *Stardew Valley* data files and extracts the crop data as JSON for use in web apps
 
 [![Stardew Valley](https://img.shields.io/badge/stardew_valley-v1.3.36-blue.svg)](https://stardewvalleywiki.com/Version_History#1.3.36)
 
@@ -10,7 +10,7 @@
    * macOS: `~/Library/Application Support/Steam/steamapps/common/Stardew Valley/Contents`
    * Linux: `~/.steam/steam/steamapps/common/Stardew Valley/Content`
    * Windows: `C:\Programs Files\Steam\SteamApps\common\Stardew Valley\Content`
-1. Copy `Crops.yaml` and `ObjectInformation.yaml` into this folder
+1. Copy `Crops.json` and `ObjectInformation.json` into this folder
 1. Install dependencies
 
    ```sh
@@ -23,7 +23,7 @@
    npm start
    ```
 
-   The parsed data is saved to `crops.json`
+   The parsed data is saved to `parsed-crop-data.json`
 
 ## Example data
 

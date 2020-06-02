@@ -281,5 +281,6 @@ Object.keys(crops.content).forEach((key) => {
   output[crop.id] = crop;
 });
 
-jsonfile.writeFileSync(OUTPUT_PATH, output, { spaces: 2 });
-console.log(`🌱  Parsed ${Object.keys(output).length} crops and saved to ${OUTPUT_PATH}`);
+jsonfile.writeFile(OUTPUT_PATH, output, { spaces: 2 }).then(() => {
+  console.log(`🌱  Parsed ${Object.keys(output).length} crops and saved to '${OUTPUT_PATH}'`);
+});

@@ -34,6 +34,21 @@ const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.json'
 const crops = jsonfile.readFileSync(CROPS_PATH);
 const objectInformation = jsonfile.readFileSync(OBJECT_INFORMATION_PATH);
 
+// Test format of data files, to detect potential changes/compatability
+Object.entries(crops.content).forEach((entry) => {
+  const [key, value] = entry;
+
+  if (!/^\d+$/.test(key)) console.error(`Unexpected format of key '${key}' in crops.content (${CROPS_PATH})`);
+
+  if (!/^[\d ]+\/(?:(?:spring|summer|fall|winter) ?)+\/\d+\/\d+\/-?\d+\/[01]\/(?:true \d \d \d+ ?.\d+|false)\/(?:true|false)\/(?:true(?: \d+)+|false)$/.test(value)) console.error(`Unexpected format of value '${value}' in crops.content[${key}] (${CROPS_PATH})`);
+});
+Object.entries(objectInformation.content).forEach((entry) => {
+  const [key, value] = entry;
+
+  if (!/^\d+$/.test(key)) console.error(`Unexpected format of key '${key}' in objectInformation.content (${OBJECT_INFORMATION_PATH})`);
+  if (!/^.+\/\d+\/-?\d+\/\w+(?: -\d+)?\/.+\/.+$/.test(value)) console.error(`Unexpected format of value '${value}' in objectInformation.content[${key}] (${OBJECT_INFORMATION_PATH})`);
+});
+
 const output = {};
 
 Object.keys(crops.content).forEach((key) => {

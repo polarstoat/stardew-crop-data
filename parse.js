@@ -25,8 +25,8 @@ const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.json'
 // Check Stardew Valley data files exist
 [CROPS_PATH, OBJECT_INFORMATION_PATH].forEach((filePath) => {
   if (!fs.existsSync(filePath)) {
-    console.error(new Error(`${filePath} does not exist`));
-    process.exit(1);
+    console.error(`Stardew Valley data file '${filePath}' does not exist`);
+    process.exit();
   }
 });
 

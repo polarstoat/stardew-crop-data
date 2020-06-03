@@ -6,6 +6,11 @@ const path = require('path');
 
 // Custom modules
 const jsonfile = require('jsonfile');
+const Xnb = require('xnbcli/app/Xnb');
+const xnbLog = require('xnbcli/app/Log');
+
+// eslint-disable-next-line no-bitwise
+xnbLog.setMode(xnbLog.INFO | xnbLog.WARN | xnbLog.DEBUG, false);
 
 // Constants (data from decompiled Stardew Valley.exe v1.2.30)
 const GIANT_CROP_IDS = [190, 254, 276];
@@ -19,8 +24,8 @@ const NOT_SOLD_AT_TRAVELING_CART_IDS = [158, 159, 160, 161, 162, 163, 326, 341, 
 const OASIS_STOCK_IDS = [478, 486, 494, 802];
 
 const OUTPUT_PATH = path.resolve(__dirname, 'parsed-crop-data.json');
-const CROPS_PATH = path.resolve(__dirname, 'Crops.json');
-const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.json');
+const CROPS_PATH = path.resolve(__dirname, 'Crops.xnb');
+const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.xnb');
 
 // Check Stardew Valley data files exist
 [CROPS_PATH, OBJECT_INFORMATION_PATH].forEach((filePath) => {
@@ -31,8 +36,8 @@ const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.json'
 });
 
 // Load Stardew Valley data files
-const crops = jsonfile.readFileSync(CROPS_PATH);
-const objectInformation = jsonfile.readFileSync(OBJECT_INFORMATION_PATH);
+const crops = new Xnb().load(CROPS_PATH);
+const objectInformation = new Xnb().load(OBJECT_INFORMATION_PATH);
 
 // Test format of data files, to detect potential changes/compatability
 Object.entries(crops.content).forEach((entry) => {

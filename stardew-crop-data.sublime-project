@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "node_modules/xnbcli/app/Xnb"
 		}
 	]
 }

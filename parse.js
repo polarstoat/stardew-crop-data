@@ -25,7 +25,7 @@ const OASIS_STOCK_IDS = [478, 486, 494, 802];
 
 const OUTPUT_PATH = path.resolve(__dirname, 'parsed-crop-data.json');
 const CROPS_PATH = path.resolve(__dirname, 'Crops.xnb');
-const OBJECT_INFORMATION_PATH = path.resolve(__dirname, 'ObjectInformation.xnb');
+const OBJECT_INFORMATION_PATH = path.resolve(__dirname, fs.readdirSync(__dirname).filter(file => file.match(/ObjectInformation(\.[a-z]{2}\-[A-Z]{2})?\.xnb/))[0] || "ObjectInformation.xnb");
 
 // Check Stardew Valley data files exist
 [CROPS_PATH, OBJECT_INFORMATION_PATH].forEach((filePath) => {
@@ -73,10 +73,10 @@ Object.keys(crops.content).forEach((key) => {
   const crop = {};
 
   /**
-   * Crop's name
+   * Crop's name (localized)
    * @type {string}
    */
-  crop.name = cropInfoData[0];
+  crop.name = cropInfoData[4];
 
   /**
    * Crop's description
@@ -190,10 +190,10 @@ Object.keys(crops.content).forEach((key) => {
   crop.seed = {};
 
   /**
-   * Seed's name
+   * Seed's name (localized)
    * @type {string}
    */
-  crop.seed.name = seedInfoData[0];
+  crop.seed.name = seedInfoData[4];
 
   /**
    * Seed's description
